@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "author": "Anonymous maker",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 96, "left": -33.56, "attrs": {} },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": -124.5,
+      "left": -207,
+      "attrs": { "temperature": "25.5", "humidity": "48.5" }
+    },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "ultrasonic1",
+      "top": -123.3,
+      "left": 43.9,
+      "attrs": { "distance": "259" }
+    },
+    { "type": "wokwi-pir-motion-sensor", "id": "pir1", "top": 80.8, "left": -247.38, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:5V", "pir1:VCC", "red", [ "h-182.25", "v-124.8" ] ],
+    [ "esp:GND.1", "pir1:GND", "black", [ "h0" ] ],
+    [ "dht1:VCC", "esp:5V", "red", [ "v76.8", "h48", "v230.4" ] ],
+    [ "dht1:GND", "esp:GND.1", "black", [ "v67.2", "h28.8", "v192" ] ],
+    [ "esp:GND.2", "ultrasonic1:GND", "black", [ "v0", "h76.8" ] ],
+    [ "ultrasonic1:VCC", "esp:5V", "red", [ "v345.6", "h-144" ] ],
+    [ "ultrasonic1:TRIG", "esp:18", "green", [ "v0" ] ],
+    [ "ultrasonic1:ECHO", "esp:19", "green", [ "v0" ] ],
+    [ "dht1:SDA", "esp:12", "green", [ "v57.6", "h57.7", "v144" ] ],
+    [ "pir1:OUT", "esp:14", "green", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}
